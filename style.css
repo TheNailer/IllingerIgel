@@ -1,0 +1,877 @@
+/* ======================================================
+   DC Illinger Igel
+   style.css
+   Teil 1
+====================================================== */
+
+:root{
+
+    --background:#050505;
+    --background2:#0a0a0a;
+
+    --text:#ffffff;
+    --grey:#a6a6a6;
+
+    --red:#7A0F12;
+    --red-light:#a51418;
+
+    --transition:600ms ease;
+
+    --max-width:1400px;
+
+}
+
+/* ======================================================
+   RESET
+====================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:var(--background);
+    color:var(--text);
+
+    font-family:"Manrope",sans-serif;
+
+    overflow-x:hidden;
+
+    line-height:1.4;
+
+}
+
+/* dezente Hintergrundstruktur */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+        radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size:24px 24px;
+
+    opacity:.25;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+}
+
+/* roter Glow */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    top:-25%;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:900px;
+    height:900px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+        rgba(122,15,18,.16),
+        transparent 70%);
+
+    filter:blur(70px);
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+/* ======================================================
+   TYPOGRAPHY
+====================================================== */
+
+h1{
+
+    font-size:clamp(3rem,7vw,7rem);
+
+    font-weight:800;
+
+    letter-spacing:-3px;
+
+}
+
+h2{
+
+    font-size:clamp(4rem,11vw,10rem);
+
+    font-weight:800;
+
+    line-height:.95;
+
+    letter-spacing:-4px;
+
+}
+
+h3{
+
+    font-size:clamp(2rem,5vw,4rem);
+
+    font-weight:300;
+
+    color:var(--grey);
+
+}
+
+.small{
+
+    font-size:1rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:6px;
+
+    color:var(--grey);
+
+    margin-bottom:30px;
+
+}
+
+/* ======================================================
+   HERO
+====================================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    text-align:center;
+
+    padding:60px;
+
+}
+
+.hero-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:25px;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    animation:intro 1.6s forwards;
+
+}
+
+.logo{
+
+    width:min(40vw,320px);
+
+    filter:
+
+        drop-shadow(0 0 20px rgba(122,15,18,.35));
+
+    transition:700ms;
+
+}
+
+.logo:hover{
+
+    transform:scale(1.02);
+
+    filter:
+
+        drop-shadow(0 0 40px rgba(122,15,18,.8));
+
+}
+
+.hero p{
+
+    color:var(--grey);
+
+    font-size:1.2rem;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+}
+
+/* ======================================================
+   SCROLL INDICATOR
+====================================================== */
+
+.scroll-indicator{
+
+    position:absolute;
+
+    bottom:45px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+.scroll-indicator span{
+
+    width:28px;
+
+    height:48px;
+
+    display:block;
+
+    border:2px solid rgba(255,255,255,.3);
+
+    border-radius:20px;
+
+    position:relative;
+
+}
+
+.scroll-indicator span::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:8px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:6px;
+
+    height:6px;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:scroll 2s infinite;
+
+}
+
+/* ======================================================
+   PANELS
+====================================================== */
+
+.panel{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:120px 40px;
+
+}
+
+.content{
+
+    width:100%;
+
+    max-width:var(--max-width);
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+
+        opacity .9s ease,
+
+        transform .9s ease;
+
+}
+
+.content.visible{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* ======================================================
+   BUTTON
+====================================================== */
+
+.button{
+
+    display:inline-block;
+
+    margin-top:60px;
+
+    padding:
+
+        18px 42px;
+
+    border:
+
+        1px solid var(--red);
+
+    color:white;
+
+    text-decoration:none;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:.35s;
+
+}
+
+.button:hover{
+
+    background:var(--red);
+
+    box-shadow:
+
+        0 0 35px rgba(122,15,18,.5);
+
+    transform:translateY(-3px);
+
+}
+
+/* ======================================================
+   INTRO ANIMATION
+====================================================== */
+
+@keyframes intro{
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes scroll{
+
+    0%{
+
+        opacity:0;
+
+        transform:translate(-50%,0);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:translate(-50%,18px);
+
+    }
+
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer{
+
+    padding:120px 40px 80px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    background:linear-gradient(
+        180deg,
+        transparent,
+        rgba(255,255,255,.02)
+    );
+
+}
+
+.footer-logo{
+
+    width:90px;
+
+    margin-bottom:25px;
+
+    opacity:.9;
+
+    transition:.4s ease;
+
+}
+
+.footer-logo:hover{
+
+    transform:scale(1.08);
+
+    filter:drop-shadow(0 0 20px rgba(122,15,18,.6));
+
+}
+
+footer p{
+
+    color:var(--grey);
+
+    margin-bottom:40px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    font-size:.9rem;
+
+}
+
+footer nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
+}
+
+footer nav a{
+
+    color:var(--grey);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    position:relative;
+
+}
+
+footer nav a:hover{
+
+    color:white;
+
+}
+
+footer nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-6px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--red);
+
+    transition:.35s ease;
+
+}
+
+footer nav a:hover::after{
+
+    width:100%;
+
+}
+
+
+/* ======================================================
+   SECTION EFFECTS
+====================================================== */
+
+.panel{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(circle at center,
+        rgba(122,15,18,.05),
+        transparent 70%);
+
+    opacity:0;
+
+    transition:1s ease;
+
+    pointer-events:none;
+
+}
+
+.panel:hover::before{
+
+    opacity:1;
+
+}
+
+
+/* ======================================================
+   FADE ELEMENTS
+====================================================== */
+
+.fade{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+
+        opacity .9s ease,
+
+        transform .9s ease;
+
+}
+
+.fade.visible{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* ======================================================
+   OPTIONAL HEADER (für spätere Erweiterung)
+====================================================== */
+
+header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:25px 50px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    backdrop-filter:blur(12px);
+
+    background:rgba(5,5,5,.55);
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+    z-index:999;
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+    transition:.4s ease;
+
+}
+
+header.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+header img{
+
+    width:48px;
+
+}
+
+header nav{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+header nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    letter-spacing:1px;
+
+    transition:.3s;
+
+}
+
+header nav a:hover{
+
+    color:var(--red-light);
+
+}
+
+
+/* ======================================================
+   SELECTION
+====================================================== */
+
+::selection{
+
+    background:var(--red);
+
+    color:white;
+
+}
+
+
+/* ======================================================
+   SCROLLBAR
+====================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#050505;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#202020;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--red);
+
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media(max-width:1100px){
+
+    .hero{
+
+        padding:50px 30px;
+
+    }
+
+    .logo{
+
+        width:260px;
+
+    }
+
+    h2{
+
+        font-size:clamp(3rem,10vw,6rem);
+
+        letter-spacing:-2px;
+
+    }
+
+    h3{
+
+        font-size:2rem;
+
+    }
+
+    .panel{
+
+        padding:100px 30px;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .hero{
+
+        padding:40px 25px;
+
+    }
+
+    .logo{
+
+        width:190px;
+
+    }
+
+    h1{
+
+        font-size:2.7rem;
+
+    }
+
+    h2{
+
+        font-size:3.3rem;
+
+        line-height:1;
+
+    }
+
+    h3{
+
+        font-size:1.5rem;
+
+    }
+
+    .hero p{
+
+        font-size:.95rem;
+
+        letter-spacing:2px;
+
+    }
+
+    .button{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+    footer{
+
+        padding:90px 25px 60px;
+
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .hero{
+
+        min-height:100svh;
+
+    }
+
+    .logo{
+
+        width:150px;
+
+    }
+
+    h1{
+
+        font-size:2.1rem;
+
+    }
+
+    h2{
+
+        font-size:2.5rem;
+
+    }
+
+    h3{
+
+        font-size:1.2rem;
+
+    }
+
+    .small{
+
+        letter-spacing:3px;
+
+    }
+
+    .scroll-indicator{
+
+        bottom:25px;
+
+    }
+
+}
+
+
+/* ======================================================
+   SMOOTH TRANSITIONS
+====================================================== */
+
+img,
+a,
+button,
+.content{
+
+    transition:all .4s ease;
+
+}
