@@ -1,13 +1,8 @@
 /* ======================================================
    DC Illinger Igel 26 e.V.
-   script.js
 ====================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    /* ==========================================
-       Active Navigation
-    ========================================== */
 
     const currentPage = document.body.dataset.page;
 
@@ -17,14 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .forEach(link => link.classList.add("active"));
     }
 
-
-    /* ==========================================
-       Header / Mobile Menu
-    ========================================== */
-
     const header = document.querySelector(".site-header");
     const menuToggle = document.querySelector(".menu-toggle");
-    const mobileLinks = document.querySelectorAll(".mobile-navigation a");
 
     function closeMenu() {
         if (!header || !menuToggle) return;
@@ -35,130 +24,74 @@ document.addEventListener("DOMContentLoaded", () => {
         menuToggle.setAttribute("aria-label", "Menü öffnen");
     }
 
-    if (menuToggle && header) {
+    if (header && menuToggle) {
         menuToggle.addEventListener("click", () => {
-            const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+            const open = menuToggle.getAttribute("aria-expanded") === "true";
 
-            header.classList.toggle("menu-open", !isOpen);
-            document.body.classList.toggle("menu-open", !isOpen);
+            header.classList.toggle("menu-open", !open);
+            document.body.classList.toggle("menu-open", !open);
 
-            menuToggle.setAttribute("aria-expanded", String(!isOpen));
+            menuToggle.setAttribute("aria-expanded", String(!open));
             menuToggle.setAttribute(
                 "aria-label",
-                isOpen ? "Menü öffnen" : "Menü schließen"
+                open ? "Menü öffnen" : "Menü schließen"
             );
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener("click", closeMenu);
-        });
+        document
+            .querySelectorAll(".mobile-navigation a")
+            .forEach(link => link.addEventListener("click", closeMenu));
 
         window.addEventListener("resize", () => {
-            if (window.innerWidth > 1050) {
-                closeMenu();
-            }
+            if (window.innerWidth > 1050) closeMenu();
         });
     }
 
-
-    /* ==========================================
-       Scroll Reveal
-    ========================================== */
-
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
             }
         });
-    }, {
-        threshold: 0.18
-    });
+    }, { threshold: 0.15 });
 
-    document.querySelectorAll(".content:not(.visible)").forEach(section => {
-        observer.observe(section);
-    });
-
-
-    /* ==========================================
-       Hero Logo Parallax
-    ========================================== */
+    document
+        .querySelectorAll(".content:not(.visible)")
+        .forEach(item => observer.observe(item));
 
     const logo = document.querySelector(".logo");
 
     if (logo && window.matchMedia("(pointer: fine)").matches) {
-        document.addEventListener("mousemove", (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 14;
-            const y = (e.clientY / window.innerHeight - 0.5) * 14;
-
+        document.addEventListener("mousemove", e => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 12;
+            const y = (e.clientY / window.innerHeight - 0.5) * 12;
             logo.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
 
-
-    /* ==========================================
-       Mouse Glow
-    ========================================== */
-
-    if (window.matchMedia("(pointer: fine)").matches) {
-        const glow = document.createElement("div");
-
-        glow.className = "mouse-glow";
-        document.body.appendChild(glow);
-
-        document.addEventListener("mousemove", (e) => {
-            glow.style.left = `${e.clientX}px`;
-            glow.style.top = `${e.clientY}px`;
-        });
-    }
-
-
-    /* ==========================================
-       Scroll Effects
-    ========================================== */
-
-    const hero = document.querySelector(".hero");
-    const indicator = document.querySelector(".scroll-indicator");
-    const panels = document.querySelectorAll(".panel");
-
     let ticking = false;
 
-    function updateScrollEffects() {
-        const scrollY = window.scrollY;
+    function update() {
+        const y = window.scrollY;
 
         if (header) {
-            header.classList.toggle("scrolled", scrollY > 24);
+            header.classList.toggle("scrolled", y > 24);
         }
 
+        const indicator = document.querySelector(".scroll-indicator");
         if (indicator) {
-            indicator.style.opacity = scrollY > 120 ? "0" : "1";
+            indicator.style.opacity = y > 120 ? "0" : "1";
         }
-
-        if (hero) {
-            hero.style.opacity = Math.max(0, 1 - scrollY / 700);
-        }
-
-        panels.forEach(panel => {
-            const rect = panel.getBoundingClientRect();
-            const center = rect.top + rect.height / 2;
-            const distance = Math.abs(window.innerHeight / 2 - center);
-
-            const scale = 1 - Math.min(distance / 4000, 0.025);
-
-            panel.style.transform = `scale(${scale})`;
-        });
 
         ticking = false;
     }
 
-    updateScrollEffects();
+    update();
 
     window.addEventListener("scroll", () => {
         if (!ticking) {
-            requestAnimationFrame(updateScrollEffects);
+            requestAnimationFrame(update);
             ticking = true;
         }
-    }, {
-        passive: true
-    });
+    }, { passive: true });
 });
