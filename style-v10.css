@@ -1908,3 +1908,150 @@ footer nav a:hover {
     }
 
 }
+
+
+/* ======================================================
+   FINAL TURNIERE SAFETY V10
+   Works with both old and new tournament HTML markup.
+====================================================== */
+
+body[data-page="turniere"] .event-section {
+    padding: 72px var(--gutter) !important;
+}
+
+body[data-page="turniere"] .event-poster-layout {
+    width: min(88%, 940px) !important;
+    margin: 0 auto !important;
+
+    display: grid !important;
+    grid-template-columns: 190px minmax(0, 1fr) !important;
+
+    gap: 52px !important;
+    align-items: center !important;
+}
+
+body[data-page="turniere"] .event-poster-wrap {
+    width: 190px !important;
+    max-width: 190px !important;
+    margin: 0 auto !important;
+}
+
+body[data-page="turniere"] .event-poster {
+    width: 190px !important;
+    max-width: 190px !important;
+    height: auto !important;
+}
+
+body[data-page="turniere"] .event-content {
+    width: 100% !important;
+    max-width: 600px !important;
+}
+
+body[data-page="turniere"] .event-content h2 {
+    font-size: clamp(2.65rem, 4.2vw, 4.35rem) !important;
+}
+
+
+/* Gallery is compact even when an older HTML still contains
+   gallery-item-wide / gallery-item-tall. */
+
+body[data-page="turniere"] .turniere-gallery {
+    padding: 64px var(--gutter) 76px !important;
+}
+
+body[data-page="turniere"] .gallery-intro {
+    width: min(88%, 720px) !important;
+    margin: 0 auto 30px !important;
+}
+
+body[data-page="turniere"] .gallery-intro h2 {
+    font-size: clamp(2.35rem, 4vw, 3.9rem) !important;
+}
+
+body[data-page="turniere"] .gallery-grid {
+    width: min(88%, 900px) !important;
+    margin: 0 auto !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 10px !important;
+}
+
+body[data-page="turniere"] .gallery-item,
+body[data-page="turniere"] .gallery-item-wide,
+body[data-page="turniere"] .gallery-item-tall {
+    grid-column: auto !important;
+
+    width: 100% !important;
+    min-height: 0 !important;
+    height: 230px !important;
+
+    overflow: hidden !important;
+}
+
+body[data-page="turniere"] .gallery-item img,
+body[data-page="turniere"] .gallery-item-wide img,
+body[data-page="turniere"] .gallery-item-tall img {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+}
+
+
+/* Tablet */
+@media (max-width: 800px) {
+
+    body[data-page="turniere"] .event-poster-layout {
+        width: min(92%, 650px) !important;
+        grid-template-columns: 160px minmax(0, 1fr) !important;
+        gap: 32px !important;
+    }
+
+    body[data-page="turniere"] .event-poster-wrap,
+    body[data-page="turniere"] .event-poster {
+        width: 160px !important;
+        max-width: 160px !important;
+    }
+
+    body[data-page="turniere"] .gallery-grid {
+        width: min(92%, 720px) !important;
+    }
+
+    body[data-page="turniere"] .gallery-item,
+    body[data-page="turniere"] .gallery-item-wide,
+    body[data-page="turniere"] .gallery-item-tall {
+        height: 200px !important;
+    }
+
+}
+
+
+/* Mobile */
+@media (max-width: 620px) {
+
+    body[data-page="turniere"] .event-poster-layout {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    body[data-page="turniere"] .event-poster-wrap,
+    body[data-page="turniere"] .event-poster {
+        width: min(48vw, 180px) !important;
+        max-width: 180px !important;
+    }
+
+    body[data-page="turniere"] .gallery-grid {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    body[data-page="turniere"] .gallery-item,
+    body[data-page="turniere"] .gallery-item-wide,
+    body[data-page="turniere"] .gallery-item-tall {
+        height: 210px !important;
+    }
+
+}
