@@ -1154,3 +1154,258 @@ footer nav a:hover {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ======================================================
+   VEREIN PAGE
+====================================================== */
+
+.subpage-hero-large {
+    min-height: 82vh;
+}
+
+.story-panel {
+    min-height: auto;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 2fr);
+
+    gap: 70px;
+
+    max-width: 1000px;
+    margin: 85px auto 0;
+
+    padding-top: 35px;
+
+    border-top: 1px solid var(--line);
+
+    text-align: left;
+}
+
+.story-grid-second {
+    margin-top: 70px;
+}
+
+.story-year {
+    font-size: clamp(3.8rem, 7vw, 7rem);
+    font-weight: 800;
+
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+}
+
+.story-copy h3 {
+    margin-bottom: 22px;
+
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+.story-copy p {
+    color: #a7a7a7;
+
+    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    line-height: 1.85;
+}
+
+.story-copy p + p {
+    margin-top: 22px;
+}
+
+.story-copy strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+
+.values-panel {
+    min-height: auto;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    margin-top: 70px;
+
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.value-card {
+    min-height: 330px;
+
+    padding: 36px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    text-align: left;
+
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.value-number {
+    margin-bottom: auto;
+
+    color: #555;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.value-card h3 {
+    margin-top: 55px;
+
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+.value-card p {
+    margin-top: 16px;
+
+    color: #8f8f8f;
+
+    font-size: 0.96rem;
+    line-height: 1.75;
+}
+
+
+.mission-copy-secondary {
+    margin-top: 20px;
+}
+
+
+.facts-panel {
+    min-height: auto;
+
+    border-top: 1px solid var(--line);
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 0;
+
+    margin-top: 70px;
+
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.fact-block {
+    min-height: 175px;
+
+    padding: 28px;
+
+    text-align: left;
+
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.fact-label {
+    display: block;
+
+    margin-bottom: 24px;
+
+    color: #5f5f5f;
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.fact-block p {
+    color: #b4b4b4;
+
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.fact-block a {
+    color: #fff;
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255,255,255,0.28);
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.fact-block a:hover {
+    color: var(--red-bright);
+    border-color: var(--red-bright);
+}
+
+
+.next-panel {
+    min-height: 80vh;
+}
+
+
+@media (max-width: 900px) {
+
+    .story-grid {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        margin-top: 55px;
+    }
+
+    .story-grid-second {
+        margin-top: 55px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-card {
+        min-height: 270px;
+    }
+
+    .facts-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .story-grid {
+        gap: 24px;
+    }
+
+    .story-year {
+        font-size: 4rem;
+    }
+
+    .value-card {
+        min-height: 250px;
+        padding: 28px;
+    }
+
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fact-block {
+        min-height: 150px;
+    }
+
+}
